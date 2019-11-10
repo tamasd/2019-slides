@@ -5,15 +5,6 @@ Demeter-Haludka Tamás
 Software architect, Pronovix
 tamas@pronovix.com
 
-* Kis reklám
-
-.link https://education.github.com/pack GitHub Student Developer Pack
-
-* Projektmunkák
-
-- kész a beosztás
-- specifikáció első piszkozat fent van
-
 * Concurrency
 
 .image 05/matrix.jpg _ 978
@@ -186,15 +177,11 @@ Mi van akkor, ha több dolgot akarunk feldolgozni?
 
 * A go runtime-mal kapcsolatban...
 
-- alapértelmezetten 1 szálon fut 
+- alapértelmezetten $PROCESSZORSZÁL szálon fut 
 - GOMAXPROCS környezeti változó
 - `runtime.GOMAXPROCS(int)` `int`
 - `runtime.NumCPU()` `int`
 - `runtime.LockOSThread()` `runtime.UnlockOSThread()`
-
-Szervereknél gyakori:
-
-	runtime.GOMAXPROCS(runtime.NumCPU())
 
 * sync csomag
 

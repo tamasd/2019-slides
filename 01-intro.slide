@@ -9,54 +9,6 @@ tamas@pronovix.com
 
 .image 01/gopher.jpg
 
-* Előfeltételek
-
-- prog1
-- angol szakirodalom megértése
-- angol irc
-
-Javasolt:
-
-- Clean Code könyv
-- git ismeret
-
-* Kurzussal kapcsolatos információ
-
-.link https://github.com/SZTEGoKurzus
-
-* Teljesítési feltételek
-
-Projektmunka (2-5 fős csapatok)
-
-- a szemeszter közepén kerül kihirdetésre
-- ha valakinek ötlete van, a 3. óráig szóljon
-- emailben kell elküldeni a zipet vagy Githubon
-- határidő: vizsgaidőszak kezdete
-- ha hamarabb küldi egy csapat, akkor van lehetőség a javításra
-- minden beküldött projekt forráskódja kikerül Githubra a nevetekkel!
-
-* Projektmunka osztályzási feltételek
-
-* 2:
-
-- lefordul
-- jól formázott (erről később)
-- csak angol elnevezések
-- helyesen működik
-
-* 3:
-
-- dokumentált, jól olvasható kód
-- nincsenek értelmetlen nevek (my, custom stb)
-
-* 4:
-
-- tesztek (90% feletti coverage)
-
-* 5:
-
-- profiling dokumentáció
-
 * Történet, motiváció
 
 2007-ben indult a tervezése a Google-nél
@@ -67,7 +19,7 @@ Fő tervezők:
 
 2009-ben lett nyílt forrású
 
-Teljesen a közösség fejleszti
+Teljesen a közösség fejleszti, erős Google befolyással
 Stabil 2012-től
 
 * A Google problémái
@@ -124,6 +76,7 @@ Egy fő Google alkalmazás
 Az elosztott build rendszerrel 2007-ben 45 perc volt lefordítani, 2012-ben már csak 27 perc
 
 * Nagyobb felhasználók
+
 - Google downloads (beépített webszerver)
 - BBC (backend játékokhoz, social media crawlers, web service-ek)
 - bit.ly (NSQ: real time distributed message processing)
@@ -189,45 +142,70 @@ Régi könyvek elégetése
 
 .image 01/gophersimple1.jpg
 
+: túl sokáig tart
+
 * Példa
 
 .image 01/gophersimple3.jpg
+
+: nincs elég talicska
 
 * Példa
 
 .image 01/gophersimple2.jpg
 
+: egyszerre csak egy könyvet tud felvenni vagy elégetni
+
 * Példa
 
 .image 01/gophersimple4.jpg
+
+: duplázzunk meg mindent
 
 * Példa
 
 .image 01/gophercomplex0.jpg
 
+: 3 pocok
+: külön feladatokat végeznek el, koordinálva
+
 * Példa
 
 .image 01/gophercomplex1.jpg
+
+: +1 pocok, ami visszaviszi a talicskát
+: ideális esetben 4x gyorsabb, mint az első
 
 * Példa
 
 .image 01/gophercomplex2.jpg
 
+: add parallelism
+: ha egyszerre csak egy pocok dolgozik, akkor is concurrent
+
 * Példa
 
 .image 01/gophercomplex3.jpg
+
+: másik megoldás: staging
 
 * Példa
 
 .image 01/gophercomplex4.jpg
 
+: add parallelism
+
 * Példa
 
 .image 01/gophercomplex5.jpg
 
+: kettő kombinálása
+
 * Példa
 
 .image 01/gophercomplex6.jpg
+
+: add parallelism
 
 * Telepítés
 
@@ -235,20 +213,24 @@ Régi könyvek elégetése
 
 * Hogyan dolgozzunk?
 
-Workspace
+Workspace (GOPATH)
 - src
 - pkg
 - bin
 
 GOPATH:
-célszerű 2 könyvtár: contrib, custom
 
-	GOPATH="$HOME/go/contrib:$HOME/go/custom"
+	GOPATH="$HOME/go"
+
+
+* Modulok
+
+	mkdir helloworld
+	cd helloworld
+	go mod init github.com/tamasd/helloworld
 
 * Első program
 
-	mkdir -p src/github.com/tamasd/helloworld
-	cd src/github.com/tamasd/helloworld
 	vim helloworld.go
 	go run helloworld.go
 
@@ -256,25 +238,16 @@ célszerű 2 könyvtár: contrib, custom
 
 	go install helloworld.go
 
-* Első library
-
-	mkdir -p src/github.com/tamasd/hellomath
-	cd src/github.com/tamasd/hellomath
-	vim hellomath.go
-
-.code 01/hellomath.go
-
-	go build
-	
 * Remote packages
 
 	go get github.com/tamasd/hellomath
 
 * Mivel dolgozzunk?
 
-.link https://github.com/visualfc/liteide https://github.com/visualfc/liteide
+.link https://www.jetbrains.com/go/ https://www.jetbrains.com/go/
+.link https://www.jetbrains.com/idea/ https://www.jetbrains.com/idea/
+.link https://code.visualstudio.com/docs/languages/go https://code.visualstudio.com/docs/languages/go
 .link https://github.com/fatih/vim-go https://github.com/fatih/vim-go
-.link http://go-ide.com http://go-ide.com
 
 * Ha már Rob Pike
 

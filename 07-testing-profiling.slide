@@ -66,6 +66,15 @@ A magas code coverage (90%) szükséges, de nem elégséges feltétele egy jól 
 
 .image 07/htmlcovercount.png
 
+* Testify
+
+	func TestSomething(t *testing.T) {
+		var a string = "Hello"
+		var b string = "Hello"
+
+		require.Equal(t, a, b, "The two words should be the same.")
+	}
+
 * Goconvey
 
 .image 07/goconvey0.png _ 978
@@ -104,16 +113,92 @@ A magas code coverage (90%) szükséges, de nem elégséges feltétele egy jól 
 		})
 	}
 
-* Debugging
+* Ginkgo + Gomega + Agouti
+
+	ginkgo bootstrap
+	ginkgo generate name
+
+* Gomega
+
+	Expect(foo).To(Equal(42))
+
+	Eventually(func() []int {
+		return thing.SliceImMonitoring
+	}).Should(HaveLen(2))
+
+	Eventually(func() string {
+		return thing.Status
+	}).ShouldNot(Equal("Stuck Waiting"))
+
+	Consistently(func() []int {
+		return thing.MemoryUsage()
+	}).Should(BeNumerically("<", 10))
+
+* Gomega (gstruct)
+
+	actual := struct{
+		A int
+		B bool
+		C string
+	}{5, true, "foo"}
+	Expect(actual).To(MatchAllFields(Fields{
+		"A": BeNumerically("<", 10),
+		"B": BeTrue(),
+		"C": Equal("foo"),
+	})
+
+* Ginkgo
+
+	var _ = Describe("Book", func() {
+		It("can be loaded from JSON", func() {
+			book := NewBookFromJSON(`{
+				"title":"Les Miserables",
+				"author":"Victor Hugo",
+				"pages":1488
+			}`)
+
+			Expect(book.Title).To(Equal("Les Miserables"))
+			Expect(book.Author).To(Equal("Victor Hugo"))
+			Expect(book.Pages).To(Equal(1488))
+		})
+	})
+
+* Ginkgo (table)
+
+	var _ = Describe("Math", func() {
+		DescribeTable("the > inequality",
+			func(x int, y int, expected bool) {
+				Expect(x > y).To(Equal(expected))
+			},
+			Entry("x > y", 1, 0, true),
+			Entry("x == y", 0, 0, false),
+			Entry("x < y", 0, 1, false),
+		)
+	})
+
+* Agouti
+
+    driver := agouti.Selenium()
+    Expect(driver.Start()).To(Succeed())
+    page, err := driver.NewPage(agouti.Browser("firefox"))
+    Expect(err).NotTo(HaveOccurred())
+
+    StartMyApp(3000)
+
+    Expect(page.Navigate("http://localhost:3000")).To(Succeed())
+    Expect(page).To(HaveURL("http://localhost:3000"))
+    Expect(page.Find("#prompt")).To(HaveText("Please login!"))
+
+    Expect(driver.Stop()).To(Succeed()) // calls page.Destroy() automatically
 
 * Debugging
 
-GDB >7.1
+	dlv debug github.com/me/foo/cmd/foo
+	dlv test github.com/me/foo/pkg/baz
 
-	go build app.go
-	gdb app
+Seamlessly integrated into Goland/IDEA.
 
-.link http://golang.org/doc/gdb Go GDB
+.link https://github.com/go-delve/delve Delve
 
 * Profiling
 
@@ -247,5 +332,3 @@ Várt érték: `4613732`
 
 	$ go test
 	PASS
-
-* Konzultációs órák

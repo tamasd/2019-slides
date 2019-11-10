@@ -17,7 +17,7 @@ tamas@pronovix.com
 
 * package kulcsszó
 
-.play -edit -numbers 02/package.go /START OMIT/,/END OMIT/
+.play -edit 02/package.go /START OMIT/,/END OMIT/
 
 A csomag nevének betűvel kell kezdődnie, majd tetszőleges számú unicode karakter követi.
 
@@ -34,7 +34,7 @@ A futtatható állomány helye. A `main` csomag `main()` függvénye felel meg C
 
 `package` után, minden más előtt
 
-.play -numbers 02/import1.go /START OMIT/,/END OMIT/
+.play 02/import1.go /START OMIT/,/END OMIT/
 
 * Több soros import
 
@@ -111,8 +111,6 @@ Egyszerű szabály:
 Használatlan változó fordítási hiba
 
 * Vezérlési szerkezetek
-
-.image 02/hatter.jpg _ 978 
 
 * if
 
