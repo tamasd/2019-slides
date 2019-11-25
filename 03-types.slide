@@ -16,6 +16,10 @@ Static, strong, type inference
 
 * Static
 
+Fordítási időben ismert az összes típus
+
+* Type inference
+
 Ha a típust egyértelműen ki tudja találni a fordító, akkor nem kell külön kiírni.
 
 * Szintaxis

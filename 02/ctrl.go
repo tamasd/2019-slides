@@ -81,7 +81,7 @@ func doSomething2(i int) {
 // END9 OMIT
 
 // START10 OMIT
-func doSomething3(i, j int, s string, z ...[]string) {
+func doSomething3(i, j int, s string, z ...string) {
 
 }
 
